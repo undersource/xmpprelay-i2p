@@ -1,0 +1,8 @@
+#!/bin/sh -e
+export host=127.0.0.1
+export port=9626
+export proxy=127.0.0.1
+export proxy_port=4447
+export command="/usr/bin/$name"
+export command_args="-l $host:$port -r $proxy:$proxy_port"
+exec chpst -u $name $command $coomand_args

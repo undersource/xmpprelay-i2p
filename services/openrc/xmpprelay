@@ -1,0 +1,30 @@
+#!/sbin/openrc-run
+
+name=$RC_SVCNAME
+host=127.0.0.1
+port=9626
+proxy=127.0.0.1
+proxy_port=4447
+
+command="/usr/bin/$name"
+command_args="-l $host:$port -r $proxy:$proxy_port"
+
+#cfgfile="/etc/$name/$name.ini"
+#pidfile="/run/$name.pid"
+
+user="$name:$name"
+
+description="XMPP Relay"
+
+start() {
+	ebegin "Starting $name"
+	start-stop-daemon -bm -S -u $user -x $command -- $command_args
+	eend $?
+}
+
+stop() {
+    ebegin "Stopping $name"
+    start-stop-daemon -K -p $pidfile
+    eend $?
+}
+

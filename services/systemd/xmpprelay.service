@@ -1,0 +1,6 @@
+[Unit]
+Description=XMPPrelay
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/xmpprelay -l 127.0.0.1:9626 -r 127.0.0.1:4447
